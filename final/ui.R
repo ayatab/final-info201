@@ -74,18 +74,6 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              ),
                              
                              tabPanel('Hesitancy Comparisons'),
-                             sidebarLayout(
-                                 sidebarPanel(
-                                     selectInput("select", h3("Select data to compare"),
-                                                 choices = list("trumpvote_2020",
-                                                                "vaccinehesitancy",
-                                                                "povertyrate",
-                                                                "trumpvote_2016",
-                                                                "incomePerCapita_2018",
-                                                                "unemployment_Apr2021"), 
-                                                 selected = 1
-                                                 
-                                     )))),
                              
                              tabPanel('Conclusion Page',
                                       column(6,
