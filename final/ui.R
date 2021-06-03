@@ -70,17 +70,12 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
                                 
                                       
-                                        sidebarPanel(
-                                        selectInput("date", "Choose a date:",
-                                            sort(US_data$date),
-                                            
+                                      sidebarPanel(
+                                        selectInput("date", "Choose a date:", sort(US_data$date))
                                       ),
                                       mainPanel(
-                                        plotOutput("distPlot"),
-                                        ##plotOutput("distPlot2")
-                                 )
-                                        
-                             ),
+                                        plotOutput("distPlot")
+                                      ),
                                       
                             ),
 
