@@ -54,6 +54,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                                  style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                              ),
                              
+
                              tabPanel('Vaccine Rates', sidebarLayout(
                                  sidebarPanel(
                                      selectInput("date", "Choose a date:",
@@ -68,6 +69,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                  )
                              ),
                              ),
+
                              
                              tabPanel('Hesitancy Map', 
                                       

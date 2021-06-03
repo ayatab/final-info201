@@ -87,6 +87,6 @@ shinyServer(function(input, output) {
         ## Labels for plot
         ggplot(filterByDate()) +             
             geom_bar(stat = "identity", mapping = aes(x = date, y = people_vaccinated / 100000), fill = "#00ffff") +
-            labs(title = "National Vaccination Rates", x = input$date, y = "# Vaccinated") 
+            labs(title = "National Vaccination Rates", x = input$date, y = "# Vaccinated (100,000's)") 
     })
 })
