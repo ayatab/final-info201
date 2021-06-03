@@ -33,10 +33,37 @@ shinyServer(function(input, output) {
     
     output$mapPlot <- renderPlot({
         
-        ggplot(map_hesitancy, aes(x = long, y = lat)) +
-            geom_polygon(aes(fill = Percent.Hispanic), color = "black") +
-            scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0.5) +
-            coord_quickmap()
+        if (input$mapFilter == "Estimated % Hesitant") {
+            ggplot(map_hesitancy, aes(x = long, y = lat)) +
+                geom_polygon(aes(group = group, fill = Estimated.hesitant), color = "black") +
+                scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                coord_quickmap()
+        } else if (input$mapFilter == "Estimated % Strongly Hesitant") {
+            ggplot(map_hesitancy, aes(x = long, y = lat)) +
+                geom_polygon(aes(group = group, fill = Estimated.strongly.hesitant), color = "black") +
+                scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                coord_quickmap()
+        } else if (input$mapFilter == "Estimated % Hesitant or Unsure") {
+            ggplot(map_hesitancy, aes(x = long, y = lat)) +
+                geom_polygon(aes(group = group, fill = Estimated.hesitant.or.unsure), color = "black") +
+                scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                coord_quickmap()
+        } else if (input$mapFilter == "% Fully Vaccinated") {
+            ggplot(map_hesitancy, aes(x = long, y = lat)) +
+                geom_polygon(aes(group = group, fill = Percent.adults.fully.vaccinated.against.COVID.19), color = "black") +
+                scale_fill_gradient(low = "white", high = "blue", breaks = c(0,0.5,1) ,limits=c(0, 1), labs(scale = "% of Population")) +
+                coord_quickmap()
+        }
         
+        # ggplot(map_hesitancy, aes(x = long, y = lat)) +
+        #     geom_polygon(aes(group = group, fill = type), color = "black") +
+        #     scale_fill_gradient(values) +
+        #     coord_quickmap()
+        
+        # ggplot(map_hesitancy, aes(x = long, y = lat)) +
+        #     geom_polygon(aes(group = group, fill = !!input$mapFilter), color = "black") +
+        #     scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5,1) ,limits=c(0, 0.5)) +
+        #     coord_quickmap()
+
     })
 })

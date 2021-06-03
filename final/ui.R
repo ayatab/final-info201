@@ -56,7 +56,17 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                         
                tabPanel('Vaccine Rates'),
                
-               tabPanel('Hesitancy Map'),
+               tabPanel('Hesitancy Map', 
+                            
+                        sidebarPanel(
+                            selectInput("mapFilter", "Display by:", c("Estimated % Hesitant", "Estimated % Hesitant or Unsure", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant")
+                        ),
+                        mainPanel(
+                            plotOutput("mapPlot")
+                        ),
+                        
+                        
+                        ),
                
                tabPanel('Hesitancy Comparisons')
                         
