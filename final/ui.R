@@ -58,7 +58,34 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                
                tabPanel('Hesitancy Map'),
                
-               tabPanel('Hesitancy Comparisons')
+               tabPanel('Hesitancy Comparisons'),
+               
+               tabPanel('Conclusion Page',
+                        column(6,
+                            p("Description of notable insight or pattern discovered in data stuff",
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                        ),
+                        column(6,
+                            p("Specific piece of data, table, or chart that demonstrates pattern or insight",
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                        ),
+                        column(6,
+                            p("Broader implications of the insight",
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                        ),
+                        column(6,
+                            p("Our dataset takes data from the CDC and the US Census that gives unbiased responses. Our dataset with the vaccine hesitancy
+                              rates also had data that was split from economical regions and by ethnicity as well, but we did not use that data to bring
+                              any bias into our data visualizations. We can see how the specified columns present in the vaccine hesitancy dataset can potentially
+                              harm certain ethnic groups if used in the wrong way to target certain groups. We avoided classifying by ethnicity to display any extreme
+                              rates or numbers.",
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
+                        )
+                        
+                        
+                        
+                        
+                        )
                         
                         )
 
