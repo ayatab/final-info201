@@ -17,15 +17,10 @@ trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
-US_data <- country_vaccinations %>%
-    filter(country == "United States", na.rm = TRUE) %>%
+Comparison_data <- country_vaccinations %>%
+    filter(country == "United States" | country == "Canada") %>%
     filter(date >= as.Date("2021-01-01")) %>%
-    filter(!is.na(people_vaccinated))
-
-CA_data <- country_vaccinations %>%
-    filter(country == "Canada", na.rm = TRUE) %>%
-    filter(date >= as.Date("2021-01-01")) %>%
-    filter(!is.na(people_vaccinated))
+    filter(!is.na(people_vaccinated_per_hundred))
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
@@ -66,12 +61,12 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              
 
                              tabPanel('Vaccine Rates', 
-                                      p("This page displays the number of people that have been vaccinated by the day, scaled by 100,000.",
+                                      p("This page displays the number of people that have been vaccinated per hundred, filtered by date.",
                                       style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
                                 
                                       
                                       sidebarPanel(
-                                        selectInput("date", "Choose a date:", sort(US_data$date))
+                                        selectInput("date", "Choose a date:", sort(Comparison_data$date))
                                       ),
                                       mainPanel(
                                         plotOutput("distPlot")
