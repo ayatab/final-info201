@@ -57,6 +57,11 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                tabPanel('Vaccine Rates'),
                
                tabPanel('Hesitancy Map', 
+                        
+                        p("This page displays the percent of estimated people hesitant on receiving the COVID vaccine in the US, with the darker regions
+                          showing where there are higher populations of estimated hesitant people. The last selection shows the percent of fully vaccinated people
+                          in the US, displayed in a different color scheme than the rest.",
+                          style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                             
                         sidebarPanel(
                             selectInput("mapFilter", "Display by:", c("Estimated % Hesitant or Unsure", "Estimated % Hesitant", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant or Unsure")
