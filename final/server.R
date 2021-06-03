@@ -17,17 +17,18 @@ county_statistics <- read.csv("../data/county_statistics.csv")
 trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
+vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-
+    
     ## load the county shapefile and join on county fips
     county_shapes <- map_data("county") %>%
-                        # load county boundary data (package "maps")
+        # load county boundary data (package "maps")
         unite(polyname, region, subregion, sep = ",") %>%
-                        # put the polygon name in the same form as in county.fips
+        # put the polygon name in the same form as in county.fips
         left_join(county.fips, by = "polyname")
-                        # merge with fips data
+    # merge with fips data
     
     # combine county shapes with vaccine hesitancy data
     map_hesitancy <- left_join(vaccine_hesitancy, county_shapes, by = c("FIPS.Code" = "fips"))
@@ -39,25 +40,46 @@ shinyServer(function(input, output) {
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.hesitant), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                labs(title = "Estimated % Hesitant") +
                 coord_quickmap()
         } else if (input$mapFilter == "Estimated % Strongly Hesitant") {
             # Map displayed if user selects Estimated % Strongly Hesitant and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.strongly.hesitant), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                labs(title = "Estimated % Strongly Hesitant") +
                 coord_quickmap()
         } else if (input$mapFilter == "Estimated % Hesitant or Unsure") {
             # Map displayed if user selects Estimated % Hesitant or Unsure and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.hesitant.or.unsure), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
+                labs(title = "Estimated % Hesitant or Unsure") +
                 coord_quickmap()
         } else if (input$mapFilter == "% Fully Vaccinated") {
             # Map displayed if user selects % Fully Vaccinated and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Percent.adults.fully.vaccinated.against.COVID.19), color = "black") +
                 scale_fill_gradient(low = "white", high = "blue", breaks = c(0,0.5,1) ,limits=c(0, 1), labs(scale = "% of Population")) +
+                labs(title = "Estimated % Fully Vaccinated") +
                 coord_quickmap()
+            
+            
+            output$distPlot <- renderPlot({
+        
+                
+                
+                
+                
+                plot_vaccine_hesitancy <- ggplot(vaccine_hesitancy_state) +
+                    geom_point(mapping = aes(
+                        x = vaccinehesitancy,
+                        y = input$select)
+                    )})
+            
+            
+            
+            
         }
     })
 })
