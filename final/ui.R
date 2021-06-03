@@ -10,6 +10,7 @@
 library(shiny)
 library(shinythemes)
 
+
 country_vaccinations <- read.csv("../data/country_vaccinations.csv")
 country_by_manufacturer <- read.csv("../data/country_vaccinations_by_manufacturer.csv")
 county_statistics <- read.csv("../data/county_statistics.csv")
@@ -17,6 +18,14 @@ trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
+US_data <- country_vaccinations %>%
+    filter(country == "United States") %>%
+    filter(date >= as.Date("2021-01-01"))
+
+
+US_data <- country_vaccinations %>%
+    filter(country == "United States") %>%
+    filter(date >= as.Date("2021-01-01"))
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
 
@@ -53,9 +62,27 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                               tags$li("Graph of vaccine hesitancy compared with political and economical factors, by Lisa Benjamin"),
                               style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                     ),
-                        
-               tabPanel('Vaccine Rates'),
                
+               tabPanel('Vaccine Rates', sidebarLayout(
+                   sidebarPanel(
+                       selectInput("date", "Choose a date:",
+                                   sort(US_data$date)      
+                       )
+                   ),
+                   
+                   # Show a plot of the generated distribution
+                   mainPanel(
+                       plotOutput("distPlot")
+                       ##textOutput("message")
+                   )
+               ),
+               ),
+               
+              
+               
+              
+    
+
                tabPanel('Hesitancy Map', 
                         
                         p("This page displays the percent of estimated people hesitant on receiving the COVID vaccine in the US, with the darker regions
@@ -72,6 +99,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                         
                         
                         ),
+
                
                tabPanel('Hesitancy Comparisons'),
                
@@ -103,6 +131,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                         )
                         
                         )
+    )
 
     # Sidebar with a slider input for number of bins
     # sidebarLayout(
@@ -119,4 +148,4 @@ shinyUI(fluidPage(theme = shinytheme('united'),
     #         plotOutput("distPlot")
     #     )
     # )
-))
+)
