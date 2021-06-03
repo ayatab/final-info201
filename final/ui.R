@@ -18,7 +18,14 @@ trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
+US_data <- country_vaccinations %>%
+    filter(country == "United States") %>%
+    filter(date >= as.Date("2021-01-01"))
 
+
+US_data <- country_vaccinations %>%
+    filter(country == "United States") %>%
+    filter(date >= as.Date("2021-01-01"))
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
 
@@ -56,13 +63,35 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                               style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                     ),
                         
-               tabPanel('Vaccine Rates'),
                
+               
+               
+               tabPanel('Vaccine Rates', sidebarLayout(
+                   sidebarPanel(
+                       ##radioButtons("")),
+                       selectInput("date", "Choose a date:",
+                                   sort(US_data$date)      
+                       )
+                   ),
+                   
+                   # Show a plot of the generated distribution
+                   mainPanel(
+                       plotOutput("distPlot")
+                       ##textOutput("message")
+                   )
+               ),    ),
+               
+              
+               
+               
+    
+                
                tabPanel('Hesitancy Map'),
                
                tabPanel('Hesitancy Comparisons')
                         
                         )
+    )
 
     # Sidebar with a slider input for number of bins
     # sidebarLayout(
@@ -79,4 +108,4 @@ shinyUI(fluidPage(theme = shinytheme('united'),
     #         plotOutput("distPlot")
     #     )
     # )
-))
+)

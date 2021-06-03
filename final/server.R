@@ -17,18 +17,46 @@ trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
+US_data <- country_vaccinations %>%
+    filter(country == "United States", na.rm = TRUE) %>%
+    filter(date >= as.Date("2021-01-01")) %>%
+    filter(!is.na(people_vaccinated))
+    
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    output$distPlot <- renderPlot({
-
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
+    ## To filter by date in UI
+    filterByDate <- reactive({
+        US_data %>%
+            filter(date %in% input$date) %>%
+            group_by(date) 
     })
+    
+    ## filtered by type(rates)
+    filterByPenis <- reactive({
+        US_data 
+            
+    
+    
+    
+    
+    
+    
+    output$distPlot <- renderPlot({
+        
+        ## Labels for plot
+        ggplot(filterByDate()) +             
+            geom_bar(stat = "identity", mapping = aes(x = date, y = people_vaccinated / 100000), fill = "#00ffff") +
+            labs(title = "National Vaccination Rates", x = input$date, y = "# Vaccinated") 
+    })
+    
+    ## Rendering output message for plot information
+    ##output$message <- renderText({
+    ##    output_msg <- paste("In", input$states, ", there were", filterByTime_AM()$AM_count[1], "UFO sightings in the AM hours as compared to ",
+    ##                        filterByTime_PM()$PM_count[1], "in the PM hours.")
+    ##})
 
 })
+
+
