@@ -121,6 +121,10 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                               harm certain ethnic groups if used in the wrong way to target certain groups. We avoided classifying by ethnicity to display any extreme
                               rates or numbers.",
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
+                                      ),
+                                      column(6,
+                                             p("Future ideas to advance the project",
+                                               style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
                                       )
                                       
                                       
