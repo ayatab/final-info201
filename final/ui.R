@@ -10,8 +10,8 @@
 library(shiny)
 library(shinythemes)
 
-poverty_data <- read.csv('data/poverty_estimate.csv')
-hesitancy_data <- read.csv('data/vaccine_hesitancy.csv')
+##poverty_data <- read.csv('data/poverty_estimate.csv')
+##hesitancy_data <- read.csv('data/vaccine_hesitancy.csv')
 
 
 # Define UI for application that draws a histogram

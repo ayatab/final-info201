@@ -7,6 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
+## Load libraries
 library(shiny)
 
 # Define server logic required to draw a histogram
