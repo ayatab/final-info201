@@ -41,9 +41,9 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                           ),
                                           column(12,
                                                  p("With the pandemic control progress rising via the vaccines being distributed throughout the United States and in the world,
-                              our group wanted to highlight some issues that still persist regarding people's behavior around vaccines, related to household income. 
-                              We retrieved our data of the vaccine hesitancy from the CDC and the household income and poverty in the US from the US Census.",
-                                                   style = "color: #Af3a10; font-family: Calibri; font-size: 15px; height: 110px; background-color: #Ffa07f; text-align: center; padding: 17px; border-radius: 20px"))
+                                                 our group wanted to highlight some issues that still persist regarding people's behavior around vaccines, related to household income. 
+                                                 We retrieved our data of the vaccine hesitancy from the CDC and the household income and poverty in the US from the US Census.",
+                                                 style = "color: #Af3a10; font-family: Calibri; font-size: 15px; height: 110px; background-color: #Ffa07f; text-align: center; padding: 17px; border-radius: 20px"))
                                           
                                       ),
                                       column(6,
@@ -60,17 +60,19 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              ),
                              
 
-                             tabPanel('Vaccine Rates', sidebarLayout(
-                                 sidebarPanel(
-                                     selectInput("date", "Choose a date:",
-                                                 sort(US_data$date)      
-                                     )
-                                 ),
+                             tabPanel('Vaccine Rates', 
+                                      p("This page displays the number of people that have been vaccinated by the day, scaled by 100,000.",
+                                      style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
+                                
+                                      sidebarLayout(
+                                        sidebarPanel(
+                                        selectInput("date", "Choose a date:",
+                                            sort(US_data$date))
+                                      ),
                                  
-                                 # Show a plot of the generated distribution
-                                 mainPanel(
-                                     plotOutput("distPlot")
-                                     ##textOutput("message")
+                                      mainPanel(
+                                        plotOutput("distPlot")
+                                     
                                  )
                              ),
                              ),
@@ -79,8 +81,8 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              tabPanel('Hesitancy Map', 
                                       
                                       p("This page displays the percent of estimated people hesitant on receiving the COVID vaccine in the US, with the darker regions
-                          showing where there are higher populations of estimated hesitant people. The last selection shows the percent of fully vaccinated people
-                          in the US, displayed in a different color scheme than the rest.",
+                                        showing where there are higher populations of estimated hesitant people. The last selection shows the percent of fully vaccinated people
+                                        in the US, displayed in a different color scheme than the rest.",
                                         style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       
                                       sidebarPanel(
@@ -93,7 +95,11 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
-                             tabPanel('Hesitancy Comparisons'),
+                             tabPanel('Hesitancy Comparisons',
+                                      p("This page displays... (change box size with height, change the spacing from the top with padding",
+                                        style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
+                                      
+                                      ),
                              
                              tabPanel('Conclusion Page',
                                       column(6,
