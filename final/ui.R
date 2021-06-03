@@ -124,11 +124,14 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 200px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       ),
                                       column(6,
-                                             p("Specific piece of data, table, or chart that demonstrates pattern or insight",
-                                               style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                                             p("We can see under the Hesitancy Comparisons page, the lower the household income, the higher the vaccine hesitancy. We reflected that this can be due to
+                                               the lack of medical support and insurance coverage people in poverty have, and education access to the impoverished is low, which can also
+                                               lead to vaccine hesitancy, as people may not trust a vaccine that they did not receive much information about or do not understand.",
+                                               style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 170px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       ),
                                       column(6,
-                                             p("Broader implications of the insight",
+                                             p("As mentioned above, we can see how poverty and unemployment rates affect the vaccine hesitancy rate. While we are not negatively targeting
+                                               the population who voted for Donald Trump, the data signifies a higher percentage of vaccine hesitancy for those who voted for him.",
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       ),
                                       column(6,
