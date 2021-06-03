@@ -19,9 +19,13 @@ trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
 US_data <- country_vaccinations %>%
-    filter(country == "United States", na.rm = TRUE) %>%
+    filter(country == "United States" | country == "Canada") %>%
     filter(date >= as.Date("2021-01-01")) %>%
     filter(!is.na(people_vaccinated))
+
+
+
+
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -71,22 +75,24 @@ shinyServer(function(input, output) {
     })
     
     ## To filter by date in UI
-    filterByDate <- reactive({
+    filterByDate_US <- reactive({
         US_data %>%
             filter(date %in% input$date) %>%
             group_by(date) 
     })
+   
     
-    ## filtered by type(rates)
     
     
 
     
     output$distPlot <- renderPlot({
-        
         ## Labels for plot
-        ggplot(filterByDate()) +             
-            geom_bar(stat = "identity", mapping = aes(x = date, y = people_vaccinated / 100000), fill = "#00ffff") +
-            labs(title = "National Vaccination Rates", x = input$date, y = "# Vaccinated (100,000's)") 
+        ggplot(filterByDate_US()) +             
+            geom_histogram(stat = "identity", mapping = aes(x = iso_code, y = people_vaccinated / 100000), fill = "#00ffaa") +
+            labs(title = "National Vaccination Rates", x = input$date, y = "# Vaccinated (100,000's)")
     })
+ 
+    
+   
 })

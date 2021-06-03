@@ -22,6 +22,11 @@ US_data <- country_vaccinations %>%
     filter(date >= as.Date("2021-01-01")) %>%
     filter(!is.na(people_vaccinated))
 
+CA_data <- country_vaccinations %>%
+    filter(country == "Canada", na.rm = TRUE) %>%
+    filter(date >= as.Date("2021-01-01")) %>%
+    filter(!is.na(people_vaccinated))
+
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
                   
@@ -64,18 +69,20 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       p("This page displays the number of people that have been vaccinated by the day, scaled by 100,000.",
                                       style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
                                 
-                                      sidebarLayout(
+                                      
                                         sidebarPanel(
                                         selectInput("date", "Choose a date:",
-                                            sort(US_data$date))
+                                            sort(US_data$date),
+                                            
                                       ),
-                                 
                                       mainPanel(
-                                        plotOutput("distPlot")
-                                     
+                                        plotOutput("distPlot"),
+                                        ##plotOutput("distPlot2")
                                  )
+                                        
                              ),
-                             ),
+                                      
+                            ),
 
                              
                              tabPanel('Hesitancy Map', 
