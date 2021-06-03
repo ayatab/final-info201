@@ -17,6 +17,7 @@ county_statistics <- read.csv("../data/county_statistics.csv")
 trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
+vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine")
 
 US_data <- country_vaccinations %>%
     filter(country == "United States") %>%
