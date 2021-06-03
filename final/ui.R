@@ -16,11 +16,12 @@ county_statistics <- read.csv("../data/county_statistics.csv")
 trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
+vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine.csv")
 
 Comparison_data <- country_vaccinations %>%
-    filter(country == "United States" | country == "Canada") %>%
-    filter(date >= as.Date("2021-01-01")) %>%
-    filter(!is.na(people_vaccinated_per_hundred))
+  filter(country == "United States" | country == "Canada") %>%
+  filter(date >= as.Date("2021-01-01")) %>%
+  filter(!is.na(people_vaccinated_per_hundred))
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
@@ -31,20 +32,20 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                   navbarPage(':)', 
                              tabPanel(icon('home'),
                                       fluidRow(
-                                          column(12,
-                                                 tags$img(src = 'https://im-media.voltron.voanews.com/Drupal/01live-166/styles/892x501/s3/2020-12/2020-12-08T180646Z_2053809307_RC26JK9ZHZ6T_RTRMADP_3_HEALTH-CORONAVIRUS-VACCINE-PATCHWORK.JPG?itok=HJMB02uJ', width = "500px", height = "300px", style = "padding: 10px; display: block; margin-left: auto; margin-right: auto; border-radius: 10%")  
-                                          ),
-                                          
-                                          column(12,
-                                                 p("Hello, and welcome to our INFO 201 Final Project.", 
-                                                   style = "color: #Af3a10; font-family: Calibri; font-size: 30px; height: 100px; background-color: #Ffa07f; text-align: center; padding: 30px; border-radius: 20px")
-                                          ),
-                                          column(12,
-                                                 p("With the pandemic control progress rising via the vaccines being distributed throughout the United States and in the world,
+                                        column(12,
+                                               tags$img(src = 'https://im-media.voltron.voanews.com/Drupal/01live-166/styles/892x501/s3/2020-12/2020-12-08T180646Z_2053809307_RC26JK9ZHZ6T_RTRMADP_3_HEALTH-CORONAVIRUS-VACCINE-PATCHWORK.JPG?itok=HJMB02uJ', width = "500px", height = "300px", style = "padding: 10px; display: block; margin-left: auto; margin-right: auto; border-radius: 10%")  
+                                        ),
+                                        
+                                        column(12,
+                                               p("Hello, and welcome to our INFO 201 Final Project.", 
+                                                 style = "color: #Af3a10; font-family: Calibri; font-size: 30px; height: 100px; background-color: #Ffa07f; text-align: center; padding: 30px; border-radius: 20px")
+                                        ),
+                                        column(12,
+                                               p("With the pandemic control progress rising via the vaccines being distributed throughout the United States and in the world,
                                                  our group wanted to highlight some issues that still persist regarding people's behavior around vaccines, related to household income. 
                                                  We retrieved our data of the vaccine hesitancy from the CDC and the household income and poverty in the US from the US Census.",
                                                  style = "color: #Af3a10; font-family: Calibri; font-size: 15px; height: 110px; background-color: #Ffa07f; text-align: center; padding: 17px; border-radius: 20px"))
-                                          
+                                        
                                       ),
                                       column(6,
                                              p("We worked on a few elements regarding vaccine rates, hesitancy, and hesitancy by political and economical factors. Our tabs focus on these elements ----> ", 
@@ -53,17 +54,17 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       ),
                                       column(6,
                                              tags$ol(
-                                                 tags$li("Vaccine Rates by date, by Mitchell Stapelman"), 
-                                                 tags$li("Map with vaccine hesitancy by state, by Justin Tham"), 
-                                                 tags$li("Graph of vaccine hesitancy compared with political and economical factors, by Lisa Benjamin"),
-                                                 style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
+                                               tags$li("Vaccine Rates by date, by Mitchell Stapelman"), 
+                                               tags$li("Map with vaccine hesitancy by state, by Justin Tham"), 
+                                               tags$li("Graph of vaccine hesitancy compared with political and economical factors, by Lisa Benjamin"),
+                                               style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                              ),
                              
-
+                             
                              tabPanel('Vaccine Rates', 
                                       p("This page displays the number of people that have been vaccinated per hundred, filtered by date.",
-                                      style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
-                                
+                                        style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
+                                      
                                       
                                       sidebarPanel(
                                         selectInput("date", "Choose a date:", sort(Comparison_data$date))
@@ -72,8 +73,8 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                         plotOutput("distPlot")
                                       ),
                                       
-                            ),
-
+                             ),
+                             
                              
                              tabPanel('Hesitancy Map', 
                                       
@@ -83,25 +84,44 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                         style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       
                                       sidebarPanel(
-                                          selectInput("mapFilter", "Display by:", c("Estimated % Hesitant or Unsure", "Estimated % Hesitant", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant or Unsure")
+                                        selectInput("mapFilter", "Display by:", c("Estimated % Hesitant or Unsure", "Estimated % Hesitant", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant or Unsure")
                                       ),
                                       mainPanel(
-                                          plotOutput("mapPlot")
+                                        plotOutput("mapPlot")
                                       ),
                                       
                                       
                              ),
                              
                              tabPanel('Hesitancy Comparisons',
-                                      p("This page displays... (change box size with height, change the spacing from the top with padding",
-                                        style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
-                                      
+                                      p("This page compares the percentage of Covid-19 vaccine hesitancy per state to political and socio-economic data.
+                                        Each dot represents a U.S. state, and each dot is placed at x axis = percenttage of vaccine hesitancty, and y axis = user selected data.
+                                        A positive slope represents a positive correlation between the two datasets compared, and a negative slope represents an inverse correlation.",
+                                        style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
+                                      sidebarPanel(
+                                        selectInput("select", h3("Select data to compare"),
+                                                    choices = list("Income per Capita (2018)",
+                                                                   "% Voted Trump (2016)",
+                                                                   "% Voted Trump (2020)",
+                                                                   "Poverty Rate (2019)",
+                                                                   "Unemployment Rate (Apr2021)"
+                                                    ), 
+                                                    selected = 1)
                                       ),
+                                      mainPanel(
+                                        plotOutput("scatter_plot")
+                                      ),
+                                      
+                                      
+                                      
+                                      
+                                      
+                             ),
                              
                              tabPanel('Conclusion Page',
                                       column(6,
-                                             p("Description of notable insight or pattern discovered in data stuff::::: Through our dataset ",
-                                               style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                                             p("Some notable observations from our insight include: the positive correlation between Republican States and vaccine hesitancy, and the inverse correlation between income per capita and vaccine hesitancy.",
+                                               style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 200px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       ),
                                       column(6,
                                              p("Specific piece of data, table, or chart that demonstrates pattern or insight",
@@ -148,3 +168,6 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                   #     )
                   # )
 ))
+
+
+
