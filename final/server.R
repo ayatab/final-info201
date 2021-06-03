@@ -17,7 +17,7 @@ county_statistics <- read.csv("../data/county_statistics.csv")
 trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
-vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine")
+vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine.csv")
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -65,21 +65,22 @@ shinyServer(function(input, output) {
                 coord_quickmap()
             
             
-            output$distPlot <- renderPlot({
+            output$plot_scatter <- renderPlot({
         
                 
                 
-                
-                
-                plot_vaccine_hesitancy <- ggplot(vaccine_hesitancy_state) +
+                plot_scatter <- ggplot(vaccine_hesitancy_state) +
                     geom_point(mapping = aes(
                         x = vaccinehesitancy,
-                        y = input$select)
-                    )})
-            
-            
+                        y == input$select, col = "orange")
+                    )
+                
+                
+                
+                     
+                    
             
             
         }
-    })
-})
+    )}})})
+

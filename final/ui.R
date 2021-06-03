@@ -9,6 +9,8 @@
 
 library(shiny)
 library(shinythemes)
+library(ggplot2)
+library(tidyr)
 
 country_vaccinations <- read.csv("../data/country_vaccinations.csv")
 country_by_manufacturer <- read.csv("../data/country_vaccinations_by_manufacturer.csv")
@@ -16,6 +18,7 @@ county_statistics <- read.csv("../data/county_statistics.csv")
 trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
+vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine.csv")
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
@@ -73,19 +76,28 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
-                             tabPanel('Hesitancy Comparisons'),
-                             sidebarLayout(
+                             tabPanel('Hesitancy Comparisons', 
+                             
+                                 
                                  sidebarPanel(
                                      selectInput("select", h3("Select data to compare"),
                                                  choices = list("trumpvote_2020",
-                                                                "vaccinehesitancy",
                                                                 "povertyrate",
                                                                 "trumpvote_2016",
-                                                                "incomePerCapita_2018",
+                                                                "incomepercapita_2018",
                                                                 "unemployment_Apr2021"), 
-                                                 selected = 1
-                                                 
-                                     )))),
+                                                 selected = 1)
+                                ),
+                                mainPanel(
+                                  plotOutput("plot_scatter")
+                                ),
+                            ),
+                             
+                             
+                             
+                             
+                             
+                             
                              
                              tabPanel('Conclusion Page',
                                       column(6,
@@ -107,7 +119,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                               harm certain ethnic groups if used in the wrong way to target certain groups. We avoided classifying by ethnicity to display any extreme
                               rates or numbers.",
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
-                                      )
+                                      ))
                                       
                                       
                                       
@@ -131,4 +143,4 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                   #         plotOutput("distPlot")
                   #     )
                   # )
-))
+)
