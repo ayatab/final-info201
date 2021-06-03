@@ -17,6 +17,11 @@ trump_biden <- read.csv("../data/trump_biden_polls.csv")
 trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 
+US_data <- country_vaccinations %>%
+    filter(country == "United States", na.rm = TRUE) %>%
+    filter(date >= as.Date("2021-01-01")) %>%
+    filter(!is.na(people_vaccinated))
+
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
                   
