@@ -100,7 +100,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              
                              tabPanel('Conclusion Page',
                                       column(6,
-                                             p("Description of notable insight or pattern discovered in data stuff",
+                                             p("Description of notable insight or pattern discovered in data stuff::::: Through our dataset ",
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
                                       ),
                                       column(6,
@@ -120,7 +120,8 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
                                       ),
                                       column(6,
-                                             p("Future ideas to advance the project",
+                                             p("Future ideas to advance the project:::Some ideas that could be implemented to advance our project would include ways to analyze how race and state statistics like 
+                              COVID-19 deaths or mask mandates. Having more data on these aspects would make it easier to understand vaccine hesitancy rates and what is driving the current vaccination efforts in the U.S.",
                                                style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 400px; background-color: #Ffa07f; text-align: center; padding: 15px; border-radius: 20px"),
                                       )
                                       
