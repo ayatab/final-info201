@@ -63,7 +63,6 @@ shinyServer(function(input, output) {
                 scale_fill_gradient(low = "white", high = "blue", breaks = c(0,0.5,1) ,limits=c(0, 1), labs(scale = "% of Population")) +
                 labs(title = "Estimated % Fully Vaccinated") +
                 coord_quickmap()
-<<<<<<< HEAD
         }    
     })
     
@@ -72,26 +71,4 @@ shinyServer(function(input, output) {
             geom_point(mapping = aes(x = vaccinehesitancy, y = input$select))
     })
 })
-=======
-            
-            
-            output$plot_scatter <- renderPlot({
-        
-                
-                
-                plot_scatter <- ggplot(vaccine_hesitancy_state) +
-                    geom_point(mapping = aes(
-                        x = vaccinehesitancy,
-                        y == input$select, col = "orange")
-                    )
-                
-                
-                
-                     
-                    
-            
-            
-        }
-    )}})})
 
->>>>>>> 3f5131ed83ea7929b712e721ffca43b9f25554a2
