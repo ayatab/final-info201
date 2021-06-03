@@ -23,16 +23,44 @@ vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
 shinyUI(fluidPage(theme = shinytheme('united'),
 
     # Application title
-    titlePanel('Final Project...?'),
+    titlePanel(h1('US COVID-19 Vaccine and Household Incomes', align = 'center', style = 'color: #Ffa07f')),
     
-    navbarPage('Tabs', 
-               tabPanel(icon('home')),
+    navbarPage(':)', 
+               tabPanel(icon('home'),
+                        fluidRow(
+                        column(12,
+                            tags$img(src = 'https://im-media.voltron.voanews.com/Drupal/01live-166/styles/892x501/s3/2020-12/2020-12-08T180646Z_2053809307_RC26JK9ZHZ6T_RTRMADP_3_HEALTH-CORONAVIRUS-VACCINE-PATCHWORK.JPG?itok=HJMB02uJ', width = "500px", height = "300px", style = "padding: 10px; display: block; margin-left: auto; margin-right: auto; border-radius: 10%")  
+                        ),
                         
-               tabPanel('1'),
+                        column(12,
+                            p("Hello, and welcome to our INFO 201 Final Project.", 
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 30px; height: 100px; background-color: #Ffa07f; text-align: center; padding: 30px; border-radius: 20px")
+                        ),
+                        column(12,
+                            p("With the pandemic control progress rising via the vaccines being distributed throughout the United States and in the world,
+                              our group wanted to highlight some issues that still persist regarding people's behavior around vaccines, related to household income. 
+                              We retrieved our data of the vaccine hesitancy from the CDC and the household income and poverty in the US from the US Census.",
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 15px; height: 110px; background-color: #Ffa07f; text-align: center; padding: 17px; border-radius: 20px"))
+                            
+                        ),
+                        column(6,
+                            p("We worked on a few elements regarding vaccine rates, hesitancy, and hesitancy by political and economical factors. Our tabs focus on these elements ----> ", 
+                              style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 150px; background-color: #Ffa07f; text-align: center; padding: 20px; border-radius: 20px"),
+                            
+                        ),
+                        column(6,
+                            tags$ol(
+                              tags$li("Vaccine Rates by date, by Mitchell Stapelman"), 
+                              tags$li("Map with vaccine hesitancy by state, by Justin Tham"), 
+                              tags$li("Graph of vaccine hesitancy compared with political and economical factors, by Lisa Benjamin"),
+                              style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
+                    ),
+                        
+               tabPanel('Vaccine Rates'),
                
-               tabPanel('2'),
+               tabPanel('Hesitancy Map'),
                
-               tabPanel('3')
+               tabPanel('Hesitancy Comparisons')
                         
                         )
 
