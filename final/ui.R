@@ -73,7 +73,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
-                             tabPanel('Hesitancy Comparisons'),
+                             tabPanel('Hesitancy Comparisons',
                              sidebarLayout(
                                  sidebarPanel(
                                      selectInput("select", h3("Select data to compare"),
