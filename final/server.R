@@ -29,41 +29,35 @@ shinyServer(function(input, output) {
         left_join(county.fips, by = "polyname")
                         # merge with fips data
     
+    # combine county shapes with vaccine hesitancy data
     map_hesitancy <- left_join(vaccine_hesitancy, county_shapes, by = c("FIPS.Code" = "fips"))
     
     output$mapPlot <- renderPlot({
         
         if (input$mapFilter == "Estimated % Hesitant") {
+            # Map displayed if user selects Estimated % Hesitant and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.hesitant), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
                 coord_quickmap()
         } else if (input$mapFilter == "Estimated % Strongly Hesitant") {
+            # Map displayed if user selects Estimated % Strongly Hesitant and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.strongly.hesitant), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
                 coord_quickmap()
         } else if (input$mapFilter == "Estimated % Hesitant or Unsure") {
+            # Map displayed if user selects Estimated % Hesitant or Unsure and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Estimated.hesitant.or.unsure), color = "black") +
                 scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5) ,limits=c(0, 0.5), labs(scale = "% of Population")) +
                 coord_quickmap()
         } else if (input$mapFilter == "% Fully Vaccinated") {
+            # Map displayed if user selects % Fully Vaccinated and appropriate labels/scale
             ggplot(map_hesitancy, aes(x = long, y = lat)) +
                 geom_polygon(aes(group = group, fill = Percent.adults.fully.vaccinated.against.COVID.19), color = "black") +
                 scale_fill_gradient(low = "white", high = "blue", breaks = c(0,0.5,1) ,limits=c(0, 1), labs(scale = "% of Population")) +
                 coord_quickmap()
         }
-        
-        # ggplot(map_hesitancy, aes(x = long, y = lat)) +
-        #     geom_polygon(aes(group = group, fill = type), color = "black") +
-        #     scale_fill_gradient(values) +
-        #     coord_quickmap()
-        
-        # ggplot(map_hesitancy, aes(x = long, y = lat)) +
-        #     geom_polygon(aes(group = group, fill = !!input$mapFilter), color = "black") +
-        #     scale_fill_gradient(low = "white", high = "red", breaks = c(0,0.5,1) ,limits=c(0, 0.5)) +
-        #     coord_quickmap()
-
     })
 })

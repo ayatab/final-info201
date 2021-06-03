@@ -59,7 +59,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                tabPanel('Hesitancy Map', 
                             
                         sidebarPanel(
-                            selectInput("mapFilter", "Display by:", c("Estimated % Hesitant", "Estimated % Hesitant or Unsure", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant")
+                            selectInput("mapFilter", "Display by:", c("Estimated % Hesitant or Unsure", "Estimated % Hesitant", "Estimated % Strongly Hesitant", "% Fully Vaccinated"), selected = "Estimated % Hesitant or Unsure")
                         ),
                         mainPanel(
                             plotOutput("mapPlot")
