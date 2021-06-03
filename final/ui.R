@@ -10,6 +10,13 @@
 library(shiny)
 library(shinythemes)
 
+country_vaccinations <- read.csv("../data/country_vaccinations.csv")
+country_by_manufacturer <- read.csv("../data/country_vaccinations_by_manufacturer.csv")
+county_statistics <- read.csv("../data/county_statistics.csv")
+trump_biden <- read.csv("../data/trump_biden_polls.csv")
+trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
+vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
+
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(theme = shinytheme('united'),
 
