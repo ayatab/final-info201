@@ -62,14 +62,9 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                               tags$li("Graph of vaccine hesitancy compared with political and economical factors, by Lisa Benjamin"),
                               style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                     ),
-                        
-               
-<<<<<<< HEAD
-               
                
                tabPanel('Vaccine Rates', sidebarLayout(
                    sidebarPanel(
-                       ##radioButtons("")),
                        selectInput("date", "Choose a date:",
                                    sort(US_data$date)      
                        )
@@ -80,15 +75,14 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                        plotOutput("distPlot")
                        ##textOutput("message")
                    )
-               ),    ),
+               ),
+               ),
                
               
                
-               
+              
     
-                
-               tabPanel('Hesitancy Map'),
-=======
+
                tabPanel('Hesitancy Map', 
                             
                         sidebarPanel(
@@ -100,7 +94,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                         
                         
                         ),
->>>>>>> 731936d781b8907351bce07f2d265d3c3396bbb3
+
                
                tabPanel('Hesitancy Comparisons'),
                
