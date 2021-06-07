@@ -9,6 +9,7 @@
 
 library(shiny)
 library(shinythemes)
+print(getwd())
 
 country_vaccinations <- read.csv("../data/country_vaccinations.csv")
 country_by_manufacturer <- read.csv("../data/country_vaccinations_by_manufacturer.csv")
