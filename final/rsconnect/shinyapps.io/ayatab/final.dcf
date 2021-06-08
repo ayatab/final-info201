@@ -1,0 +1,13 @@
+name: final
+title: final
+username:
+account: ayatab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4225186
+bundleId: 4690128
+url: https://ayatab.shinyapps.io/final/
+when: 1623113356.87502
+lastSyncTime: 1623113356.87502
+asMultiple: FALSE
+asStatic: FALSE
