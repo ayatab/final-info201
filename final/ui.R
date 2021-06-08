@@ -11,13 +11,13 @@ library(shiny)
 library(shinythemes)
 library(dplyr)
 
-country_vaccinations <- read.csv("../data/country_vaccinations.csv")
-country_by_manufacturer <- read.csv("../data/country_vaccinations_by_manufacturer.csv")
-county_statistics <- read.csv("../data/county_statistics.csv")
-trump_biden <- read.csv("../data/trump_biden_polls.csv")
-trump_clinton <- read.csv("../data/trump_clinton_polls.csv")
-vaccine_hesitancy <- read.csv("../data/Vaccine_Hesitancy_County.csv")
-vaccine_hesitancy_state <-read.csv("../data/Data_with_state_vaccine.csv")
+country_vaccinations <- read.csv("data/country_vaccinations.csv")
+country_by_manufacturer <- read.csv("data/country_vaccinations_by_manufacturer.csv")
+county_statistics <- read.csv("data/county_statistics.csv")
+trump_biden <- read.csv("data/trump_biden_polls.csv")
+trump_clinton <- read.csv("data/trump_clinton_polls.csv")
+vaccine_hesitancy <- read.csv("data/Vaccine_Hesitancy_County.csv")
+vaccine_hesitancy_state <-read.csv("data/Data_with_state_vaccine.csv")
 
 Comparison_data <- country_vaccinations %>%
   filter(country == "United States" | country == "Canada") %>%
