@@ -90,7 +90,7 @@ shinyServer(function(input, output) {
         ## Labels for plot
         ggplot(filterByDate_US()) +             
             geom_histogram(stat = "identity", mapping = aes(x = iso_code, y = people_vaccinated_per_hundred, fill = iso_code)) +
-            labs(title = "Vaccination Rates (Canada vs. U.S)", x = input$date, y = "# Vaccinated (per 100)")
+            labs(title = "Vaccination Rates (Canada vs. U.S)", x = input$date, y = "# Vaccinated (per 100)", fill="Country")
     })
     
     
