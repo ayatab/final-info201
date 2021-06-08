@@ -34,6 +34,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                   titlePanel(h1('US COVID-19 Vaccine and Household Incomes', align = 'center', style = 'color: #Ffa07f')),
                   
                   navbarPage(':)', 
+                             #home page
                              tabPanel(icon('home'),
                                       fluidRow(
                                         column(12,
@@ -64,7 +65,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                                style = "color: #691d03; font-family: Calibri; font-size: 20px; height: 250px; background-color: #Ef6332; text-align: center; padding: 25px; border-radius: 20px"))
                              ),
                              
-                             
+                             #vaccine rates tab, added css elements for code like other tabs for description at the top
                              tabPanel('Vaccine Rates', 
                                       p("This page displays the number of people that have been vaccinated per hundred, filtered by date.",
                                         style = "color: #Af3a10; font-family: Calibri; font-size: 20px; height: 50px; background-color: #Ffa07f; text-align: center; padding: 10px; border-radius: 20px"),
@@ -79,7 +80,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
-                             
+                             #hesitancy map tab, added css elements for code like other tabs for description at the top
                              tabPanel('Hesitancy Map', 
                                       
                                       p("This page displays the percent of estimated people hesitant on receiving the COVID vaccine in the US, with the darker regions
@@ -97,6 +98,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
+                             #hesitancy comparison map, added css elements for code like other tabs for description at the top
                              tabPanel('Hesitancy Comparisons',
                                       p("This page compares the percentage of Covid-19 vaccine hesitancy per state to political and socio-economic data.
                                         Each dot represents a U.S. state, and each dot is placed at x axis = percenttage of vaccine hesitancty, and y axis = user selected data.
@@ -122,6 +124,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                                       
                              ),
                              
+                             #conclusion tab, separated into columns of 6 and added css elements for code like other tabs
                              tabPanel('Conclusion Page',
                                       column(6,
                                              p("Some notable observations from our insight include: the positive correlation between Republican States and vaccine hesitancy, and the inverse correlation between income per capita and vaccine hesitancy.",
@@ -159,21 +162,7 @@ shinyUI(fluidPage(theme = shinytheme('united'),
                              
                   )
                   
-                  # Sidebar with a slider input for number of bins
-                  # sidebarLayout(
-                  #     sidebarPanel(
-                  #         sliderInput("bins",
-                  #                     "Number of bins:",
-                  #                     min = 1,
-                  #                     max = 50,
-                  #                     value = 30)
-                  #     ),
-                  # 
-                  #     # Show a plot of the generated distribution
-                  #     mainPanel(
-                  #         plotOutput("distPlot")
-                  #     )
-                  # )
+              
 ))
 
 
