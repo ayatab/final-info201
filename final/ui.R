@@ -7,10 +7,12 @@
 #    http://shiny.rstudio.com/
 #
 
+# libraries used
 library(shiny)
 library(shinythemes)
 library(dplyr)
 
+# all datasets that were read in for plot and map usage
 country_vaccinations <- read.csv("data/country_vaccinations.csv")
 country_by_manufacturer <- read.csv("data/country_vaccinations_by_manufacturer.csv")
 county_statistics <- read.csv("data/county_statistics.csv")
@@ -19,6 +21,7 @@ trump_clinton <- read.csv("data/trump_clinton_polls.csv")
 vaccine_hesitancy <- read.csv("data/Vaccine_Hesitancy_County.csv")
 vaccine_hesitancy_state <-read.csv("data/Data_with_state_vaccine.csv")
 
+# dataset used for the vaccine rates tab compared between the US and Canada
 Comparison_data <- country_vaccinations %>%
   filter(country == "United States" | country == "Canada") %>%
   filter(date >= as.Date("2021-01-01")) %>%

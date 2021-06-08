@@ -8,10 +8,13 @@
 #    http://shiny.rstudio.com/
 #
 
+# libraries used
 library(shiny)
 library(maps)
 library(tidyverse)
 
+
+# all datasets that were read in for plot and map usage
 country_vaccinations <- read.csv("data/country_vaccinations.csv")
 country_by_manufacturer <- read.csv("data/country_vaccinations_by_manufacturer.csv")
 county_statistics <- read.csv("data/county_statistics.csv")
@@ -23,6 +26,7 @@ vaccine_hesitancy_state <-read.csv("data/Data_with_state_vaccine.csv")
 vaccine_hesitancy_state <- vaccine_hesitancy_state %>% 
     mutate(incomepercapita_2018 = as.numeric(str_replace(incomepercapita_2018, ",", "")))
 
+# dataset used for the vaccine rates tab compared between the US and Canada
 Comparison_data <- country_vaccinations %>%
     filter(country == "United States" | country == "Canada") %>%
     filter(date >= as.Date("2021-01-01")) %>%
@@ -91,6 +95,7 @@ shinyServer(function(input, output) {
     
     
     output$scatter_plot <- renderPlot({
+        #shows the plot for the percentage of people who voted for Donald Trump compared with vaccine hesitancy population percentages
         if (input$select == "% Voted Trump (2020)") {
             ggplot(vaccine_hesitancy_state) +
                 geom_point(mapping = aes(
@@ -98,6 +103,7 @@ shinyServer(function(input, output) {
                     y = trumpvote_2020, col = "orange")) +
             labs(x = "Vaccine Hesitancy (% population)", y = "Voted for Trump in 2020 (% population)") + 
                 theme(legend.position = "none")
+        #shows the plot for the poverty rate in 2019 compared with vaccine hesitancy population percentages
         } else if (input$select == "Poverty Rate (2019)") {
             ggplot(vaccine_hesitancy_state) +
                 geom_point(mapping = aes(
@@ -105,6 +111,7 @@ shinyServer(function(input, output) {
                     y = povertyrate_2019, col = "orange")) +
             labs(x = "Vaccine Hesitancy (% population)", y = "Poverty Rate (% population)") + 
                 theme(legend.position = "none")
+        #shows the plot for the income per capita in 2019 compared with vaccine hesitancy population percentages
         } else if (input$select == "Income per Capita (2018)") {
             ggplot(vaccine_hesitancy_state) +
                 geom_point(mapping = aes(
@@ -112,6 +119,7 @@ shinyServer(function(input, output) {
                     y = incomepercapita_2018, col = "orange")) +
             labs(x = "Vaccine Hesitancy (% population)", y = "Income per Capita in 2018 (USD)") + 
                 theme(legend.position = "none")
+        #shows the plot for the unemployment rate in the US compared with vaccine hesitancy population percentages
         } else if (input$select == "Unemployment Rate (Apr2021)") {
             ggplot(vaccine_hesitancy_state) +
                 geom_point(mapping = aes(
@@ -119,6 +127,7 @@ shinyServer(function(input, output) {
                     y = unemployment_Apr2021, col = "orange")) +
                 labs(x = "Vaccine Hesitancy (% population)", y = "Unenployement rate as of April 2021 (% population)") + 
                 theme(legend.position = "none")
+        #shows the plot for those who voted for Donald Trump in 2016 compared with vaccine hesitancy population percentages
         } else if (input$select == "% Voted Trump (2016)") {
             ggplot(vaccine_hesitancy_state) +
                 geom_point(mapping = aes(
